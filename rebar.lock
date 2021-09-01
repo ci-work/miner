@@ -4,13 +4,8 @@
  {<<"base32">>,{pkg,<<"base32">>,<<"0.1.0">>},4},
  {<<"base64url">>,{pkg,<<"base64url">>,<<"1.0.1">>},1},
  {<<"blockchain">>,
-<<<<<<< HEAD
   {git,"https://github.com/ci-work/blockchain-core.git",
-       {ref,"a8ab8d963343f1e10b90c74596ebd5ec49161af8"}},
-=======
-  {git,"https://github.com/helium/blockchain-core.git",
-       {ref,"78d57ff4d1c42a949724db86589d6cc205c2cd99"}},
->>>>>>> branch 'master' of https://github.com/helium/miner
+       {ref,"cc5d6b78e18c74b5aaf8b8a14b4025c30de0c12f"}},
   0},
  {<<"chatterbox">>,
   {git,"https://github.com/andymck/chatterbox",
