@@ -5,7 +5,7 @@
  {<<"base64url">>,{pkg,<<"base64url">>,<<"1.0.1">>},1},
  {<<"blockchain">>,
   {git,"https://github.com/ci-work/blockchain-core.git",
-       {ref,"9d8d63c2fb387defc284eb435a8de74a236135b9"}},
+       {ref,"d4e80a6dfac872232f55b3887799534cb9196c7d"}},
   0},
  {<<"chatterbox">>,
   {git,"https://github.com/andymck/chatterbox",
