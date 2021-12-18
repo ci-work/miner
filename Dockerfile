@@ -1,4 +1,4 @@
-ARG BUILDER_IMAGE=erlang:23.3.4.6-alpine
+ARG BUILDER_IMAGE=erlang:24-alpine
 ARG RUNNER_IMAGE=alpine
 FROM ${BUILDER_IMAGE} as builder
 
@@ -6,9 +6,10 @@ ARG REBAR_DIAGNOSTIC=0
 ENV DIAGNOSTIC=${REBAR_DIAGNOSTIC}
 
 ARG VERSION
+# default to building for mainnet
+ARG BUILD_NET=mainnet
 ARG REBAR_BUILD_TARGET
 ARG TAR_PATH=_build/$REBAR_BUILD_TARGET/rel/*/*.tar.gz
-
 ARG EXTRA_BUILD_APK_PACKAGES
 
 RUN apk add --no-cache --update \
@@ -35,14 +36,14 @@ RUN ./rebar3 as ${REBAR_BUILD_TARGET} tar -n miner -v ${VERSION}
 
 RUN mkdir -p /opt/docker/update
 RUN tar -zxvf ${TAR_PATH} -C /opt/docker
-RUN wget -O /opt/docker/update/genesis https://snapshots.helium.wtf/genesis.mainnet
+RUN wget -O /opt/docker/update/genesis https://snapshots.helium.wtf/genesis.${BUILD_NET}
 
 FROM ${RUNNER_IMAGE} as runner
 
 ARG VERSION
 ARG EXTRA_RUNNER_APK_PACKAGES
 
-RUN apk add --no-cache --update ncurses dbus libsodium libgcc libstdc++ \
+RUN apk add --no-cache --update ncurses dbus libsodium libstdc++ \
                                 ${EXTRA_RUNNER_APK_PACKAGES}
 
 RUN ulimit -n 64000
